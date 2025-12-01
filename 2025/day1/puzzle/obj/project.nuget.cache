@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qo6pTrGu4No=",
+  "success": true,
+  "projectFilePath": "/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/puzzle.csproj",
+  "expectedPackageFiles": [
+    "/home/mjerta/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

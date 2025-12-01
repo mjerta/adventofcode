@@ -1,0 +1,15 @@
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/bin/Debug/net9.0/puzzle
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/bin/Debug/net9.0/puzzle.deps.json
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/bin/Debug/net9.0/puzzle.runtimeconfig.json
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/bin/Debug/net9.0/puzzle.dll
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/bin/Debug/net9.0/puzzle.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.GeneratedMSBuildEditorConfig.editorconfig
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.AssemblyInfoInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.AssemblyInfo.cs
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.csproj.CoreCompileInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.sourcelink.json
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.dll
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/refint/puzzle.dll
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/puzzle.genruntimeconfig.cache
+/home/mjerta/develop/projects/adventofcode/2025/day1/puzzle/obj/Debug/net9.0/ref/puzzle.dll
