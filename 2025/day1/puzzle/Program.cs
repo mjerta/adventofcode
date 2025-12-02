@@ -47,8 +47,6 @@ class TurnOperation {
 
   private string direction = "";
   private int maxValue;
-  private bool isPassedByMaxValue = false;
-  private bool isPassedByZero = false;
   private int countingNumber = 0;
   private int position;
 
@@ -80,25 +78,16 @@ class TurnOperation {
 
   private void calculatePosition() {
     if(direction.Equals("left")) {
-      Console.WriteLine("LEFT");
-      Console.WriteLine(this.isPassedByZero);
-      // Console.WriteLine("Counting nunber " + this.countingNumber);
       int tempNumber = this.position - this.countingNumber;
-      if(tempNumber < 0 && !this.isPassedByZero) {
-        this.isPassedByZero = true;
-        this.isPassedByMaxValue = false;
+      if(tempNumber < 0) {
         this.position = this.maxValue - Math.Abs(tempNumber);
       } else {
         this.position = this.position - this.countingNumber;
       }
       
     } else {
-      Console.WriteLine("RIGHT");
-      // Console.WriteLine("Counting nunber " + this.countingNumber);
       int tempNumber = this.position + this.countingNumber;
-      if(tempNumber > this.maxValue && !this.isPassedByMaxValue) {
-        this.isPassedByMaxValue = true;
-        this.isPassedByZero = false;
+      if(tempNumber >= this.maxValue) {
         this.position = tempNumber - this.maxValue;
       } else {
         this.position = this.position + this.countingNumber;
