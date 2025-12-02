@@ -19,6 +19,9 @@ class Program {
     CrackManager crackManager = new CrackManager(turnOperation, log, lines);
     crackManager.runTheCrack();
     Console.WriteLine(log.checkForZeros());
+    Console.WriteLine(turnOperation.getPassedByZero());
+    int totalAmount = log.checkForZeros() + turnOperation.getPassedByZero();
+    Console.WriteLine(totalAmount);
   }
 }
 
@@ -49,6 +52,7 @@ class TurnOperation {
   private int maxValue;
   private int countingNumber = 0;
   private int position;
+  private int passedByZero = 0;
 
   public TurnOperation(int initialPosition, int maxValue) {
     this.position = initialPosition;
@@ -61,6 +65,10 @@ class TurnOperation {
     this.splitTheNumber(line);
     this.calculatePosition();
     return this.position;
+  }
+
+  public int getPassedByZero() {
+    return this.passedByZero;
   }
   
   private void setDirection(string line) {
@@ -78,17 +86,28 @@ class TurnOperation {
 
   private void calculatePosition() {
     if(direction.Equals("left")) {
+      // Console.WriteLine("left");
       int substractNumber = this.devideTheNumberByMaxValue();
       int tempNumber = this.position - substractNumber;
       if(tempNumber < 0) {
+        if(!this.position.Equals(0)) {
+          this.passedByZero++;
+        }
         this.position = this.maxValue - Math.Abs(tempNumber);
       } else {
+
         this.position = this.position - substractNumber;
       }
       
     } else {
+      // Console.WriteLine("right");
       int additionNumber = this.devideTheNumberByMaxValue();
       int tempNumber = this.position + additionNumber;
+      if(tempNumber > this.maxValue) {
+        if(!this.position.Equals(0)) {
+         this.passedByZero++;
+        }
+      }
       if(tempNumber >= this.maxValue) {
         this.position = tempNumber - this.maxValue;
       } else {
@@ -99,7 +118,12 @@ class TurnOperation {
 
   private int devideTheNumberByMaxValue() {
    double rawAmount = this.countingNumber / this.maxValue;
-   int removeAmount = (int)Math.Floor(rawAmount) * this.maxValue;
+   int flooredAmount = (int)Math.Floor(rawAmount);
+   int removeAmount = flooredAmount * this.maxValue;
+   if(!this.position.Equals(0)) {
+     Console.WriteLine("test " + flooredAmount);
+     this.passedByZero += flooredAmount;
+   }
    return this.countingNumber - removeAmount;
   }
 
