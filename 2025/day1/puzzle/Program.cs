@@ -18,7 +18,7 @@ class Program {
     Log log = new Log();
     CrackManager crackManager = new CrackManager(turnOperation, log, lines);
     crackManager.runTheCrack();
-
+    Console.WriteLine(log.checkForZeros());
   }
 }
 
@@ -36,8 +36,8 @@ class CrackManager {
   
   public void runTheCrack() {
     foreach (string line in this.lines) {
-      int test = turnOperation.turnTheWheel(line);
-      Console.WriteLine(test);
+      int numb  = turnOperation.turnTheWheel(line);
+      this.log.addToList(numb);
     }
   }
 
@@ -78,21 +78,29 @@ class TurnOperation {
 
   private void calculatePosition() {
     if(direction.Equals("left")) {
-      int tempNumber = this.position - this.countingNumber;
+      int substractNumber = this.devideTheNumberByMaxValue();
+      int tempNumber = this.position - substractNumber;
       if(tempNumber < 0) {
         this.position = this.maxValue - Math.Abs(tempNumber);
       } else {
-        this.position = this.position - this.countingNumber;
+        this.position = this.position - substractNumber;
       }
       
     } else {
-      int tempNumber = this.position + this.countingNumber;
+      int additionNumber = this.devideTheNumberByMaxValue();
+      int tempNumber = this.position + additionNumber;
       if(tempNumber >= this.maxValue) {
         this.position = tempNumber - this.maxValue;
       } else {
-        this.position = this.position + this.countingNumber;
+        this.position = this.position + additionNumber;
       }
     }
+  }
+
+  private int devideTheNumberByMaxValue() {
+   double rawAmount = this.countingNumber / this.maxValue;
+   int removeAmount = (int)Math.Floor(rawAmount) * this.maxValue;
+   return this.countingNumber - removeAmount;
   }
 
 }
@@ -103,5 +111,16 @@ class Log {
 
   public void addToList(int number) {
     this.notedNumbers.Add(number);
+  }
+
+  public int checkForZeros() {
+    int totalAmountZeros = 0;
+    foreach(int numb in this.notedNumbers) {
+      // Console.WriteLine(numb);
+      if(numb.Equals(0)) {
+        totalAmountZeros++;
+      }
+    }
+    return totalAmountZeros;
   }
 }
