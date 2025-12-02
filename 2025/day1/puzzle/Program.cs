@@ -2,7 +2,7 @@
 
 class Program {
   static void Main() {
-    string filePath = "./puzzle-input.txt";
+    string filePath = "./example-puzzle-input.txt";
     string[] lines = Array.Empty<string>();
 
     if(File.Exists(filePath)) {
@@ -18,10 +18,10 @@ class Program {
     Log log = new Log();
     CrackManager crackManager = new CrackManager(turnOperation, log, lines);
     crackManager.runTheCrack();
-    Console.WriteLine(log.checkForZeros());
-    Console.WriteLine(turnOperation.getPassedByZero());
-    int totalAmount = log.checkForZeros() + turnOperation.getPassedByZero();
-    Console.WriteLine(totalAmount);
+    // Console.WriteLine(log.checkForZeros());
+    Console.WriteLine("Result " + turnOperation.getPassedByZero());
+    // int totalAmount = log.checkForZeros() + turnOperation.getPassedByZero();
+    // Console.WriteLine(totalAmount);
   }
 }
 
@@ -39,8 +39,8 @@ class CrackManager {
   
   public void runTheCrack() {
     foreach (string line in this.lines) {
-      int numb  = turnOperation.turnTheWheel(line);
-      this.log.addToList(numb);
+      turnOperation.turnTheWheel(line);
+      // this.log.addToList(numb);
     }
   }
 
@@ -60,11 +60,32 @@ class TurnOperation {
 
   }
 
-  public int turnTheWheel(string line) {
+  public void turnTheWheel(string line) {
     this.setDirection(line);
     this.splitTheNumber(line);
-    this.calculatePosition();
-    return this.position;
+    if(this.direction.Equals("left")) {
+      for(int i = this.position; i >= this.position - this.countingNumber; i--) {
+        Console.WriteLine(i);
+        if(i % 100 == 0) {
+          Console.WriteLine("bingo");
+          this.passedByZero++;
+        }
+
+      }
+      this.position = this.position - this.countingNumber;
+    } else {
+      for(int i = this.position; i <= this.position + this.countingNumber; i++) {
+        Console.WriteLine(i);
+        if(i % 100 == 0) {
+          Console.WriteLine("bingo");
+          this.passedByZero++;
+        }
+      }
+      this.position = this.position + this.countingNumber;
+
+    // this.calculatePosition();
+    // return this.position;
+    }
   }
 
   public int getPassedByZero() {
