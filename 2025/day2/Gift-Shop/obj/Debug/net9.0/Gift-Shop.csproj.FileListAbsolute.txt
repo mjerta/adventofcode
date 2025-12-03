@@ -1,0 +1,15 @@
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/bin/Debug/net9.0/Gift-Shop
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/bin/Debug/net9.0/Gift-Shop.deps.json
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/bin/Debug/net9.0/Gift-Shop.runtimeconfig.json
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/bin/Debug/net9.0/Gift-Shop.dll
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/bin/Debug/net9.0/Gift-Shop.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.GeneratedMSBuildEditorConfig.editorconfig
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.AssemblyInfoInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.AssemblyInfo.cs
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.csproj.CoreCompileInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.sourcelink.json
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.dll
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/refint/Gift-Shop.dll
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/Gift-Shop.genruntimeconfig.cache
+/home/mjerta/develop/projects/adventofcode/2025/day2/Gift-Shop/obj/Debug/net9.0/ref/Gift-Shop.dll
