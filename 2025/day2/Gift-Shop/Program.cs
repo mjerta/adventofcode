@@ -18,11 +18,22 @@ class Program
 
 
         Console.WriteLine(inputLine);
-        CrackManager crackManager = new CrackManager();
-        crackManager.splitTheString(inputLine);
+        CrackManager crackManager = new CrackManager(inputLine);
         crackManager.getRanges()
           .ForEach(range => Console.WriteLine(range));
 
+        int i = 0;
+        crackManager.getAllCombinations()
+          .ForEach(listOfRanges =>
+          {
+              i++;
+              listOfRanges
+              .ForEach(number =>
+              {
+                  string validOrNot = crackManager.isInvalidNumber(number) ? "invalid" : "valid";
+                  Console.WriteLine("This is the number of " + i + ": " + number + " and is a " + validOrNot + " number");
+              });
+          });
     }
 }
 
@@ -31,18 +42,45 @@ class CrackManager
 {
     private List<string> range;
 
-    public CrackManager()
+    public CrackManager(string inputLine)
     {
         this.range = new List<string>();
+        this.splitTheString(inputLine);
     }
 
-
-    public void splitTheString(string input)
+    private void splitTheString(string input)
     {
         this.range = input.Split(",").ToList();
     }
 
-    public List<string> getRanges() {
-      return this.range;
+    public List<string> getRanges()
+    {
+        return this.range;
+    }
+
+    public List<List<int>> getAllCombinations()
+    {
+        return this.range.Select(range =>
+        {
+            string[] parts = range.Split("-");
+            int start = int.Parse(parts[0]);
+            int end = int.Parse(parts[1]);
+            return Enumerable.Range(start, end - start + 1).ToList();
+        })
+        .ToList();
+    }
+
+    public bool isInvalidNumber(int number)
+    {
+        string str = number.ToString();
+        if (str.Length > 1 && str.Length % 2 == 0)
+        {
+          int indexOfTheMiddle = str.Length / 2;
+          string firstPart = str.Substring(0,indexOfTheMiddle);
+          string secondPart = str.Substring(indexOfTheMiddle);
+          Console.WriteLine("even amount of numbers , first part: " + firstPart + " secondpart is " + secondPart);
+          if(firstPart.Equals(secondPart)) return true;
+        }
+        return false;
     }
 }
