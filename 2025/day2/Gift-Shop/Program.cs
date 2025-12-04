@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        // string filePath = "./example-puzzle-input.txt";
-        string filePath = "./puzzle-input.txt";
+        string filePath = "./example-puzzle-input.txt";
+        // string filePath = "./puzzle-input.txt";
         string inputLine = "";
 
         if (File.Exists(filePath))
@@ -91,12 +91,22 @@ class CrackManager
         }
     }
 
-    public bool isInvalidNumber(long number)
+    public bool isInvalidNumber(long number, bool partTwo = false)
     {
         string str = number.ToString();
-        string firstPart = str.Substring(0, str.Length / 2);
-        string secondPart = str.Substring(str.Length / 2);
-        return firstPart.Equals(secondPart);
+        if (partTwo)
+        {
+            string firstPart = str.Substring(0, str.Length / 2);
+            string secondPart = str.Substring(str.Length / 2);
+            return firstPart.Equals(secondPart);
+        }
+        else
+        {
+
+            string firstPart = str.Substring(0, str.Length / 2);
+            string secondPart = str.Substring(str.Length / 2);
+            return firstPart.Equals(secondPart);
+        }
     }
 }
 
