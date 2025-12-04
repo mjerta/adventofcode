@@ -4,7 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        string filePath = "./example-puzzle-input.txt";
+        // string filePath = "./example-puzzle-input.txt";
+        string filePath = "./puzzle-input.txt";
         string inputLine = "";
 
         if (File.Exists(filePath))
@@ -19,10 +20,11 @@ class Program
 
         Console.WriteLine(inputLine);
         CrackManager crackManager = new CrackManager(inputLine);
+        Score score = new Score();
         crackManager.getRanges()
           .ForEach(range => Console.WriteLine(range));
 
-        int i = 0;
+        long i = 0;
         crackManager.getAllCombinations()
           .ForEach(listOfRanges =>
           {
@@ -30,13 +32,21 @@ class Program
               listOfRanges
               .ForEach(number =>
               {
-                  // string validOrNot = crackManager.isInvalidNumber(number) ? "invalid" : "valid";
-                  if(crackManager.isInvalidNumber(number)) {
-                    
+                  if (crackManager.isInvalidNumber(number))
+                  {
+                      score.addNumber(number);
                   }
-                 // Console.WriteLine("This is the number of " + i + ": " + number + " and is a " + validOrNot + " number");
               });
           });
+        long sumOfInvalidNumbers = score.getInvalidNumbers()
+          .Select(number =>
+          {
+              Console.WriteLine("The invalid number is :" + number);
+              return number;
+          })
+        .Sum();
+
+        Console.WriteLine("The total sum of invalid numbers is " + sumOfInvalidNumbers);
     }
 }
 
@@ -61,47 +71,53 @@ class CrackManager
         return this.range;
     }
 
-    public List<List<int>> getAllCombinations()
+    public List<List<long>> getAllCombinations()
     {
         return this.range.Select(range =>
         {
             string[] parts = range.Split("-");
-            int start = int.Parse(parts[0]);
-            int end = int.Parse(parts[1]);
-            return Enumerable.Range(start, end - start + 1).ToList();
+            long start = long.Parse(parts[0]);
+            long end = long.Parse(parts[1]);
+            return getRangeLong(start, end).ToList();
         })
         .ToList();
     }
 
-    public bool isInvalidNumber(int number)
+    private IEnumerable<long> getRangeLong(long start, long end)
+    {
+        for (long i = start; i <= end; i++)
+        {
+            yield return i;
+        }
+    }
+
+    public bool isInvalidNumber(long number)
     {
         string str = number.ToString();
-        if (str.Length > 1 && str.Length % 2 == 0)
-        {
-          int indexOfTheMiddle = str.Length / 2;
-          string firstPart = str.Substring(0,indexOfTheMiddle);
-          string secondPart = str.Substring(indexOfTheMiddle);
-          if(firstPart.Equals(secondPart)) return true;
-        }
-        return false;
+        string firstPart = str.Substring(0, str.Length / 2);
+        string secondPart = str.Substring(str.Length / 2);
+        return firstPart.Equals(secondPart);
     }
 }
 
 
 class Score
 {
-  private List<int> invalidNumbers;
+    private List<long> invalidNumbers;
 
-  public Score() {
-    this.invalidNumbers = new List<int>();
-  }
+    public Score()
+    {
+        this.invalidNumbers = new List<long>();
+    }
 
-  public void addNumber(int inputNumber) {
-    this.invalidNumbers.Add(inputNumber);
-  }
+    public void addNumber(long inputNumber)
+    {
+        this.invalidNumbers.Add(inputNumber);
+    }
 
 
-  public List<int> getInvalidNumbers() {
-    return this.invalidNumbers;
-  }
+    public List<long> getInvalidNumbers()
+    {
+        return this.invalidNumbers;
+    }
 }
