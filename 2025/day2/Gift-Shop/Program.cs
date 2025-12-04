@@ -30,8 +30,11 @@ class Program
               listOfRanges
               .ForEach(number =>
               {
-                  string validOrNot = crackManager.isInvalidNumber(number) ? "invalid" : "valid";
-                  Console.WriteLine("This is the number of " + i + ": " + number + " and is a " + validOrNot + " number");
+                  // string validOrNot = crackManager.isInvalidNumber(number) ? "invalid" : "valid";
+                  if(crackManager.isInvalidNumber(number)) {
+                    
+                  }
+                 // Console.WriteLine("This is the number of " + i + ": " + number + " and is a " + validOrNot + " number");
               });
           });
     }
@@ -78,9 +81,27 @@ class CrackManager
           int indexOfTheMiddle = str.Length / 2;
           string firstPart = str.Substring(0,indexOfTheMiddle);
           string secondPart = str.Substring(indexOfTheMiddle);
-          Console.WriteLine("even amount of numbers , first part: " + firstPart + " secondpart is " + secondPart);
           if(firstPart.Equals(secondPart)) return true;
         }
         return false;
     }
+}
+
+
+class Score
+{
+  private List<int> invalidNumbers;
+
+  public Score() {
+    this.invalidNumbers = new List<int>();
+  }
+
+  public void addNumber(int inputNumber) {
+    this.invalidNumbers.Add(inputNumber);
+  }
+
+
+  public List<int> getInvalidNumbers() {
+    return this.invalidNumbers;
+  }
 }
