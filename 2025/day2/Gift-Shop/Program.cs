@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 class Program
 {
@@ -32,7 +33,7 @@ class Program
               listOfRanges
               .ForEach(number =>
               {
-                  if (crackManager.isInvalidNumber(number))
+                  if (crackManager.isInvalidNumber(number, true))
                   {
                       score.addNumber(number);
                   }
@@ -91,21 +92,22 @@ class CrackManager
         }
     }
 
-    public bool isInvalidNumber(long number, bool partTwo = false)
+    public bool isInvalidNumber(long number, bool partTwo)
     {
+        // bool hasRepeatingGroup = Regex.IsMatch(text, @"^(.{2,})\1$");
         string str = number.ToString();
-        if (partTwo)
+        bool tempResult = false;
+        if (partTwo && str.Length % 2 != 0 && str.Length > 2)
         {
-            string firstPart = str.Substring(0, str.Length / 2);
-            string secondPart = str.Substring(str.Length / 2);
-            return firstPart.Equals(secondPart);
+            tempResult = Regex.IsMatch(str, @"^(.+?)\1+$");
+            return tempResult;
         }
         else
         {
 
-            string firstPart = str.Substring(0, str.Length / 2);
-            string secondPart = str.Substring(str.Length / 2);
-            return firstPart.Equals(secondPart);
+          string firstPart = str.Substring(0, str.Length / 2);
+          string secondPart = str.Substring(str.Length / 2);
+          return firstPart.Equals(secondPart);
         }
     }
 }
@@ -113,21 +115,21 @@ class CrackManager
 
 class Score
 {
-    private List<long> invalidNumbers;
+  private List<long> invalidNumbers;
 
-    public Score()
-    {
-        this.invalidNumbers = new List<long>();
-    }
+  public Score()
+  {
+    this.invalidNumbers = new List<long>();
+  }
 
-    public void addNumber(long inputNumber)
-    {
-        this.invalidNumbers.Add(inputNumber);
-    }
+  public void addNumber(long inputNumber)
+  {
+    this.invalidNumbers.Add(inputNumber);
+  }
 
 
-    public List<long> getInvalidNumbers()
-    {
-        return this.invalidNumbers;
-    }
+  public List<long> getInvalidNumbers()
+  {
+    return this.invalidNumbers;
+  }
 }
