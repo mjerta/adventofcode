@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
-        string filePath = "./example-puzzle-input.txt";
-        // string filePath = "./puzzle-input.txt";
+        // string filePath = "./example-puzzle-input.txt";
+        string filePath = "./puzzle-input.txt";
         string inputLine = "";
 
         if (File.Exists(filePath))
@@ -94,42 +95,48 @@ class CrackManager
 
     public bool isInvalidNumber(long number, bool partTwo)
     {
-        // bool hasRepeatingGroup = Regex.IsMatch(text, @"^(.{2,})\1$");
         string str = number.ToString();
-        bool tempResult = false;
-        if (partTwo && str.Length % 2 != 0 && str.Length > 2)
-        {
-            tempResult = Regex.IsMatch(str, @"^(.+?)\1+$");
-            return tempResult;
+        // bool tempResult = false;
+        // tempResult = Regex.IsMatch(str, @"^(.+?)\1+$");
+        // return tempResult;
+        // Try without Regex
+        
+        // Long version
+        string firstpart = str.Substring(0, str.Length / 2);
+        string secondPart = str.Substring(str.Length / 2);
+        bool isInvalid = firstpart.Equals(secondPart);
+        int repeat = 1;
+        while(repeat * 2 < str.Length) {
+          string partToRepeat = str.Substring(0, repeat);
+          int amountToRepeat = str.Length / repeat;
+          string repeatedString = string.Concat(Enumerable.Repeat(partToRepeat, amountToRepeat));
+          if(repeatedString.Equals(str)) {
+            return true;
+          }
+          repeat++;
         }
-        else
-        {
-
-          string firstPart = str.Substring(0, str.Length / 2);
-          string secondPart = str.Substring(str.Length / 2);
-          return firstPart.Equals(secondPart);
-        }
+    return isInvalid;
     }
 }
 
 
 class Score
 {
-  private List<long> invalidNumbers;
+    private List<long> invalidNumbers;
 
-  public Score()
-  {
-    this.invalidNumbers = new List<long>();
-  }
+    public Score()
+    {
+        this.invalidNumbers = new List<long>();
+    }
 
-  public void addNumber(long inputNumber)
-  {
-    this.invalidNumbers.Add(inputNumber);
-  }
+    public void addNumber(long inputNumber)
+    {
+        this.invalidNumbers.Add(inputNumber);
+    }
 
 
-  public List<long> getInvalidNumbers()
-  {
-    return this.invalidNumbers;
-  }
+    public List<long> getInvalidNumbers()
+    {
+        return this.invalidNumbers;
+    }
 }
