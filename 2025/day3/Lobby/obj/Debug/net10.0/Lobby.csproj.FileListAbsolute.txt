@@ -1,0 +1,15 @@
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/bin/Debug/net10.0/Lobby
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/bin/Debug/net10.0/Lobby.deps.json
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/bin/Debug/net10.0/Lobby.runtimeconfig.json
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/bin/Debug/net10.0/Lobby.dll
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/bin/Debug/net10.0/Lobby.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.GeneratedMSBuildEditorConfig.editorconfig
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.AssemblyInfoInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.AssemblyInfo.cs
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.csproj.CoreCompileInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.sourcelink.json
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.dll
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/refint/Lobby.dll
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/Lobby.genruntimeconfig.cache
+/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/Debug/net10.0/ref/Lobby.dll
