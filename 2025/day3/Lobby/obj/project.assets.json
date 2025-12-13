@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "/home/mjerta/.nuget/packages/": {}
+    "C:\\Users\\mpostma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/Lobby.csproj",
+      "projectUniqueName": "D:\\develop\\projects\\adventofcode\\2025\\day3\\Lobby\\Lobby.csproj",
       "projectName": "Lobby",
-      "projectPath": "/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/Lobby.csproj",
-      "packagesPath": "/home/mjerta/.nuget/packages/",
-      "outputPath": "/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/obj/",
+      "projectPath": "D:\\develop\\projects\\adventofcode\\2025\\day3\\Lobby\\Lobby.csproj",
+      "packagesPath": "C:\\Users\\mpostma\\.nuget\\packages\\",
+      "outputPath": "D:\\develop\\projects\\adventofcode\\2025\\day3\\Lobby\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/mjerta/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mpostma\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -60,18 +60,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[10.0.0, 10.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 class Program
 {
@@ -22,7 +22,6 @@ class Program
         BatteryScanner batteryScanner = new BatteryScanner();
         Log log = new Log();
 
-
         foreach (string line in lines)
         {
             string sequence = batteryScanner.CheckMaximumJoltage(line, true);
@@ -36,14 +35,11 @@ class Program
 
 class BatteryScanner
 {
-
     public string CheckMaximumJoltage(string inputString, bool secondPart)
     {
         Dictionary<int, int> numbersAndPositions = new Dictionary<int, int>();
         List<int> collectHighNumbers = new List<int>();
-        List<int> allValues = inputString
-          .Select(c => int.Parse(c.ToString()))
-          .ToList();
+        List<int> allValues = inputString.Select(c => int.Parse(c.ToString())).ToList();
 
         var normalizedStr = "";
         if (!secondPart)
@@ -70,54 +66,60 @@ class BatteryScanner
                 }
                 else
                 {
-                    var lastPartAfterIndex = allValues.GetRange(indexMax + 1, allValues.Count() - indexMax - 1);
+                    var lastPartAfterIndex = allValues.GetRange(
+                        indexMax + 1,
+                        allValues.Count() - indexMax - 1
+                    );
                     normalizedStr = normalizedStr[0] + lastPartAfterIndex.Max().ToString();
                 }
             }
         }
         else
         {
-            // first I want to see if i could get the largest number but also make sure it score high on the lowest position of the string
-            // int highestNumber = allValues.Max();
-            // int positionOfMax = Array.IndexOf(allValues.ToArray(), highestNumber);
-            // numbersAndPositions.Add(positionOfMax, highestNumber);
-            // var sortedDict = numbersAndPositions.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
-            // TODO - Need to put a foreach here stil
-            //
+            int i = 0;
+            while (true)
+            {
+                if (i >= allValues.Count - 1)
+                {
+                    if (collectHighNumbers.Count < 12)
+                    {
+                        Console.WriteLine("Addition1");
+                        collectHighNumbers.Add(allValues[i]);
+                    }
+                    break;
+                }
 
-            // string changingString = inputString;
-            // for (int i = 0; i < inputString.Length; i++)
-            // {
-            //
-            //     if (changingString.Length - 1 > 12)
-            //     {
-            //         changingString = inputString.Substring(i);
-            //         Console.WriteLine(changingString);
-            //     }
-            //
+                if (
+                    allValues.GetRange(i, allValues.Count - i).Count < 12
+                    && collectHighNumbers.Count < 12
+                )
+                {
+                    Console.WriteLine("Addition2 : " + allValues[i]);
+                    collectHighNumbers.Add(allValues[i]);
+                    i++;
+                    continue;
+                }
 
-            // Match all numbers
-            MatchCollection matches = Regex.Matches(inputString, @"\d+");
+                bool isBiggerThenNext = allValues[i] > allValues[i + 1];
+                if (isBiggerThenNext)
+                {
+                    Console.WriteLine("Addition3");
+                    collectHighNumbers.Add(allValues[i]);
+                }
 
-            var numbers = matches.Cast<Match>()
-                                 .Select(m => long.Parse(m.Value))
-                                 .ToList();
-
-            long maxNumber = numbers.Max();
-            Console.WriteLine($"Highest number: {maxNumber}");
-            normalizedStr = maxNumber.ToString();
+                i++;
+            }
+            string joined = string.Join("", collectHighNumbers);
+            Console.WriteLine(joined);
+            normalizedStr = joined;
         }
-
 
         return normalizedStr;
     }
 
-
     private string NormalizeStrinBacktoSingleSequenceNumber(string input)
     {
-        List<int> allChars = input
-          .Select(c => int.Parse(c.ToString()))
-          .ToList();
+        List<int> allChars = input.Select(c => int.Parse(c.ToString())).ToList();
 
         int best = allChars.Max();
         int secondBest = allChars.OrderByDescending(n => n).Skip(1).First();
@@ -128,7 +130,6 @@ class BatteryScanner
 class Log
 {
     private List<string> sequenceList = new List<string>();
-
 
     public void AddSequenceString(string inputString)
     {
