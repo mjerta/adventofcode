@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 class Program
 {
     static void Main()
     {
-        string filePath = "./puzzle-input.txt";
+        string filePath = "./example-puzzle-input.txt";
         // string filePath = "./example-puzzle-input.txt";
         string[] lines = Array.Empty<string>();
 
@@ -23,7 +25,7 @@ class Program
 
         foreach (string line in lines)
         {
-            string sequence = batteryScanner.CheckMaximumJoltage(line);
+            string sequence = batteryScanner.CheckMaximumJoltage(line, true);
             log.AddSequenceString(sequence);
         }
 
@@ -43,7 +45,7 @@ class BatteryScanner
           .Select(c => int.Parse(c.ToString()))
           .ToList();
 
-        var normalizedStr = ""
+        var normalizedStr = "";
         if (!secondPart)
         {
             collectHighNumbers.Add(allValues.Max());
@@ -76,11 +78,34 @@ class BatteryScanner
         else
         {
             // first I want to see if i could get the largest number but also make sure it score high on the lowest position of the string
-            int highestNumber = allValues.Max();
-            int positionOfMax = Array.IndexOf(allValues.ToArray(), highestNumber);
-            numbersAndPositions.Add(positionOfMax, highestNumber);
-            var sortedDict = numbersAndPositions.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
+            // int highestNumber = allValues.Max();
+            // int positionOfMax = Array.IndexOf(allValues.ToArray(), highestNumber);
+            // numbersAndPositions.Add(positionOfMax, highestNumber);
+            // var sortedDict = numbersAndPositions.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
             // TODO - Need to put a foreach here stil
+            //
+
+            // string changingString = inputString;
+            // for (int i = 0; i < inputString.Length; i++)
+            // {
+            //
+            //     if (changingString.Length - 1 > 12)
+            //     {
+            //         changingString = inputString.Substring(i);
+            //         Console.WriteLine(changingString);
+            //     }
+            //
+
+            // Match all numbers
+            MatchCollection matches = Regex.Matches(inputString, @"\d+");
+
+            var numbers = matches.Cast<Match>()
+                                 .Select(m => long.Parse(m.Value))
+                                 .ToList();
+
+            long maxNumber = numbers.Max();
+            Console.WriteLine($"Highest number: {maxNumber}");
+            normalizedStr = maxNumber.ToString();
         }
 
 
@@ -120,10 +145,10 @@ class Log
 
     public void CalculateAllNumbers()
     {
-        int result = 0;
+        long result = 0;
         foreach (string sequence in sequenceList)
         {
-            result += int.Parse(sequence);
+            result += long.Parse(sequence);
         }
         Console.WriteLine(result);
     }
