@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Numerics;
+using System.Text.RegularExpressions;
 
 class Program
 {
     static void Main()
     {
-        // string filePath = "./example-puzzle-input.txt";
-        string filePath = "./puzzle-input.txt";
+        string filePath = "./example-puzzle-input.txt";
+        // string filePath = "./puzzle-input.txt";
         string[] lines = Array.Empty<string>();
 
         if (File.Exists(filePath))
@@ -30,8 +30,10 @@ class Program
         }
 
         log.PrintOutSequenceList();
-        Console.WriteLine("");;
-        Console.WriteLine("The result is:");;
+        Console.WriteLine("");
+        ;
+        Console.WriteLine("The result is:");
+        ;
         log.CalculateAllNumbers();
     }
 }
@@ -43,11 +45,10 @@ class BatteryScanner
         Dictionary<int, int> numbersAndPositions = new Dictionary<int, int>();
         List<int> collectHighNumbers = new List<int>();
         List<int> allValues = inputString.Select(c => int.Parse(c.ToString())).ToList();
-        
 
         bool isHighNumbersComplete()
         {
-          return collectHighNumbers.Count >= 12;
+            return collectHighNumbers.Count >= 12;
         }
         var normalizedStr = "";
         if (!secondPart)
@@ -85,57 +86,83 @@ class BatteryScanner
         else
         {
             int i = 0;
+            // method that get me splice and start with  the highest number and at least have 12 number left
+            List<int> numberToCheck = GetSpliceFromMax(allValues, 12);
             while (true)
             {
-                if (i >= allValues.Count - 1)
+                if (i >= numberToCheck.Count - 1)
                 {
                     if (!isHighNumbersComplete())
                     {
-                        Console.WriteLine("Addition1 :" + allValues[i]);
-                        collectHighNumbers.Add(allValues[i]);
+                        // Console.WriteLine("Addition1 :" + numberToCheck[i]);
+                        collectHighNumbers.Add(numberToCheck[i]);
                     }
                     break;
                 }
 
                 // This is looking if there at least 12 number to work with
-                // TODO: I need to combine it with the count of collectHighNumbers somehow 
-                // Lets print out what the range is im using in the condition below 
-                int rangeLeft = allValues.GetRange(i, allValues.Count - i).Count;
+                // TODO: I need to combine it with the count of collectHighNumbers somehow
+                // Lets print out what the range is im using in the condition below
+                int rangeLeft = numberToCheck.GetRange(i, numberToCheck.Count - i).Count;
                 // Console.WriteLine("range left :" + rangeLeft);
                 int amountOfNumbersNeeded = rangeLeft + collectHighNumbers.Count;
                 // Console.WriteLine("range left minus CollectedNumbers :" + amountOfNumbersNeeded);
-                if ( amountOfNumbersNeeded <= 12)
-                // if ( allValues.GetRange(i, allValues.Count - i).Count < 12)
+                if (amountOfNumbersNeeded <= 12)
+                // if ( numberToCheck.GetRange(i, numberToCheck.Count - i).Count < 12)
                 {
-                  if(isHighNumbersComplete())
-                  {
-                    break;
-                  }
-                    Console.WriteLine("Addition2 : " + allValues[i]);
-                    collectHighNumbers.Add(allValues[i]);
+                    if (isHighNumbersComplete())
+                    {
+                        break;
+                    }
+                    // Console.WriteLine("Addition2 : " + numberToCheck[i]);
+                    collectHighNumbers.Add(numberToCheck[i]);
                     i++;
                     continue;
                 }
 
-                bool isBiggerThenNext = allValues[i] > allValues[i + 1];
+                bool isBiggerThenNext = numberToCheck[i] > numberToCheck[i + 1];
                 if (isBiggerThenNext)
                 {
-                    if(isHighNumbersComplete())
+                    if (isHighNumbersComplete())
                     {
-                      break;
+                        break;
                     }
-                    Console.WriteLine("Addition3 :" + allValues[i]);
-                    collectHighNumbers.Add(allValues[i]);
+                    // Console.WriteLine("Addition3 :" + numberToCheck[i]);
+                    collectHighNumbers.Add(numberToCheck[i]);
                 }
 
                 i++;
             }
             string joined = string.Join("", collectHighNumbers);
-            // Console.WriteLine(joined);
+            Console.WriteLine(joined);
             normalizedStr = joined;
         }
 
         return normalizedStr;
+    }
+
+    private List<int> GetSpliceFromMax(List<int> sequence, int minLength)
+    {
+        List<int> spliceFound = new List<int>();
+        List<int> hightToLow = new List<int>();
+        hightToLow = sequence.OrderByDescending(n => n).ToList();
+
+        int i = 0;
+        while (true)
+        {
+            int maxNumber = hightToLow[i];
+            int indexOfMax = sequence.IndexOf(maxNumber);
+
+            spliceFound = sequence.GetRange(indexOfMax, sequence.Count - indexOfMax).ToList();
+            int remaning = spliceFound.Count;
+            // Console.WriteLine((remaning));
+            if (remaning >= 12)
+            {
+                break;
+            }
+            i++;
+        }
+        return spliceFound;
     }
 
     private string NormalizeStrinBacktoSingleSequenceNumber(string input)
