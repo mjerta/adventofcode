@@ -7,8 +7,8 @@ class Program
 {
     static void Main()
     {
-        string filePath = "./example-puzzle-input.txt";
-        // string filePath = "./puzzle-input.txt";
+        // string filePath = "./example-puzzle-input.txt";
+        string filePath = "./puzzle-input.txt";
         string[] lines = Array.Empty<string>();
 
         if (File.Exists(filePath))
@@ -91,7 +91,7 @@ class BatteryScanner
                 {
                     if (!isHighNumbersComplete())
                     {
-                        // Console.WriteLine("Addition1 :" + allValues[i]);
+                        Console.WriteLine("Addition1 :" + allValues[i]);
                         collectHighNumbers.Add(allValues[i]);
                     }
                     break;
@@ -111,7 +111,7 @@ class BatteryScanner
                   {
                     break;
                   }
-                    // Console.WriteLine("Addition2 : " + allValues[i]);
+                    Console.WriteLine("Addition2 : " + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                     i++;
                     continue;
@@ -120,7 +120,11 @@ class BatteryScanner
                 bool isBiggerThenNext = allValues[i] > allValues[i + 1];
                 if (isBiggerThenNext)
                 {
-                    // Console.WriteLine("Addition3 :" + allValues[i]);
+                    if(isHighNumbersComplete())
+                    {
+                      break;
+                    }
+                    Console.WriteLine("Addition3 :" + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                 }
 
