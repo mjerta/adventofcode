@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Numerics;
 
 class Program
 {
     static void Main()
     {
         string filePath = "./example-puzzle-input.txt";
-        // string filePath = "./example-puzzle-input.txt";
+        // string filePath = "./puzzle-input.txt";
         string[] lines = Array.Empty<string>();
 
         if (File.Exists(filePath))
@@ -29,6 +30,8 @@ class Program
         }
 
         log.PrintOutSequenceList();
+        Console.WriteLine("");;
+        Console.WriteLine("The result is:");;
         log.CalculateAllNumbers();
     }
 }
@@ -88,22 +91,27 @@ class BatteryScanner
                 {
                     if (!isHighNumbersComplete())
                     {
-                        Console.WriteLine("Addition1 :" + allValues[i]);
+                        // Console.WriteLine("Addition1 :" + allValues[i]);
                         collectHighNumbers.Add(allValues[i]);
                     }
                     break;
                 }
 
                 // This is looking if there at least 12 number to work with
-                if (
-                    allValues.GetRange(i, allValues.Count - i).Count < 12
-                )
+                // TODO: I need to combine it with the count of collectHighNumbers somehow 
+                // Lets print out what the range is im using in the condition below 
+                int rangeLeft = allValues.GetRange(i, allValues.Count - i).Count;
+                // Console.WriteLine("range left :" + rangeLeft);
+                int amountOfNumbersNeeded = rangeLeft + collectHighNumbers.Count;
+                // Console.WriteLine("range left minus CollectedNumbers :" + amountOfNumbersNeeded);
+                if ( amountOfNumbersNeeded <= 12)
+                // if ( allValues.GetRange(i, allValues.Count - i).Count < 12)
                 {
                   if(isHighNumbersComplete())
                   {
                     break;
                   }
-                    Console.WriteLine("Addition2 : " + allValues[i]);
+                    // Console.WriteLine("Addition2 : " + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                     i++;
                     continue;
@@ -112,7 +120,7 @@ class BatteryScanner
                 bool isBiggerThenNext = allValues[i] > allValues[i + 1];
                 if (isBiggerThenNext)
                 {
-                    Console.WriteLine("Addition3 :" + allValues[i]);
+                    // Console.WriteLine("Addition3 :" + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                 }
 
@@ -155,10 +163,10 @@ class Log
 
     public void CalculateAllNumbers()
     {
-        long result = 0;
+        BigInteger result = 0;
         foreach (string sequence in sequenceList)
         {
-            result += long.Parse(sequence);
+            result += BigInteger.Parse(sequence);
         }
         Console.WriteLine(result);
     }
