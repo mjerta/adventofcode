@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "B8iileoQK8s=",
+  "dgSpecHash": "HQIgvbNiapc=",
   "success": true,
-  "projectFilePath": "D:\\develop\\projects\\adventofcode\\2025\\day3\\Lobby\\Lobby.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/mjerta/develop/projects/adventofcode/2025/day3/Lobby/Lobby.csproj",
+  "expectedPackageFiles": [
+    "/home/mjerta/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.0/microsoft.aspnetcore.app.ref.10.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

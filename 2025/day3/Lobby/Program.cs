@@ -40,7 +40,12 @@ class BatteryScanner
         Dictionary<int, int> numbersAndPositions = new Dictionary<int, int>();
         List<int> collectHighNumbers = new List<int>();
         List<int> allValues = inputString.Select(c => int.Parse(c.ToString())).ToList();
+        
 
+        bool isHighNumbersComplete()
+        {
+          return collectHighNumbers.Count >= 12;
+        }
         var normalizedStr = "";
         if (!secondPart)
         {
@@ -81,19 +86,23 @@ class BatteryScanner
             {
                 if (i >= allValues.Count - 1)
                 {
-                    if (collectHighNumbers.Count < 12)
+                    if (!isHighNumbersComplete())
                     {
-                        Console.WriteLine("Addition1");
+                        Console.WriteLine("Addition1 :" + allValues[i]);
                         collectHighNumbers.Add(allValues[i]);
                     }
                     break;
                 }
 
+                // This is looking if there at least 12 number to work with
                 if (
                     allValues.GetRange(i, allValues.Count - i).Count < 12
-                    && collectHighNumbers.Count < 12
                 )
                 {
+                  if(isHighNumbersComplete())
+                  {
+                    break;
+                  }
                     Console.WriteLine("Addition2 : " + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                     i++;
@@ -103,14 +112,14 @@ class BatteryScanner
                 bool isBiggerThenNext = allValues[i] > allValues[i + 1];
                 if (isBiggerThenNext)
                 {
-                    Console.WriteLine("Addition3");
+                    Console.WriteLine("Addition3 :" + allValues[i]);
                     collectHighNumbers.Add(allValues[i]);
                 }
 
                 i++;
             }
             string joined = string.Join("", collectHighNumbers);
-            Console.WriteLine(joined);
+            // Console.WriteLine(joined);
             normalizedStr = joined;
         }
 
