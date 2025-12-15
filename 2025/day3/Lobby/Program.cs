@@ -7,8 +7,8 @@ class Program
 {
     static void Main()
     {
-        string filePath = "./example-puzzle-input.txt";
-        // string filePath = "./puzzle-input.txt";
+        // string filePath = "./example-puzzle-input.txt";
+        string filePath = "./puzzle-input.txt";
         string[] lines = Array.Empty<string>();
 
         if (File.Exists(filePath))
@@ -85,57 +85,72 @@ class BatteryScanner
         }
         else
         {
-            int i = 0;
-            // method that get me splice and start with  the highest number and at least have 12 number left
-            List<int> numberToCheck = GetSpliceFromMax(allValues, 12);
-            while (true)
+            // int i = 0;
+            // // method that get me splice and start with  the highest number and at least have 12 number left
+            // List<int> numberToCheck = GetSpliceFromMax(allValues, 12);
+            // while (true)
+            // {
+            //     if (i >= numberToCheck.Count - 1)
+            //     {
+            //         if (!isHighNumbersComplete())
+            //         {
+            //             // Console.WriteLine("Addition1 :" + numberToCheck[i]);
+            //             collectHighNumbers.Add(numberToCheck[i]);
+            //         }
+            //         break;
+            //     }
+            //
+            //     // This is looking if there at least 12 number to work with
+            //     // TODO: I need to combine it with the count of collectHighNumbers somehow
+            //     // Lets print out what the range is im using in the condition below
+            //     int rangeLeft = numberToCheck.GetRange(i, numberToCheck.Count - i).Count;
+            //     // Console.WriteLine("range left :" + rangeLeft);
+            //     int amountOfNumbersNeeded = rangeLeft + collectHighNumbers.Count;
+            //     // Console.WriteLine("range left minus CollectedNumbers :" + amountOfNumbersNeeded);
+            //     if (amountOfNumbersNeeded <= 12)
+            //     // if ( numberToCheck.GetRange(i, numberToCheck.Count - i).Count < 12)
+            //     {
+            //         if (isHighNumbersComplete())
+            //         {
+            //             break;
+            //         }
+            //         // Console.WriteLine("Addition2 : " + numberToCheck[i]);
+            //         collectHighNumbers.Add(numberToCheck[i]);
+            //         i++;
+            //         continue;
+            //     }
+            //
+            //     bool isBiggerThenNext = numberToCheck[i] > numberToCheck[i + 1];
+            //     if (isBiggerThenNext)
+            //     {
+            //         if (isHighNumbersComplete())
+            //         {
+            //             break;
+            //         }
+            //         // Console.WriteLine("Addition3 :" + numberToCheck[i]);
+            //         collectHighNumbers.Add(numberToCheck[i]);
+            //     }
+            //
+            //     i++;
+            // }
+            // string joined = string.Join("", collectHighNumbers);
+            // Console.WriteLine(joined);
+            // normalizedStr = joined;
+            List<int> hightValues = new List<int>();
+            int currentMaxIndex = 0;
+            for (int needed = 11; needed >= 0; needed--)
             {
-                if (i >= numberToCheck.Count - 1)
+                for (int i = currentMaxIndex; i < allValues.Count - needed; i++)
                 {
-                    if (!isHighNumbersComplete())
+                    if (allValues[i] > allValues[currentMaxIndex])
                     {
-                        // Console.WriteLine("Addition1 :" + numberToCheck[i]);
-                        collectHighNumbers.Add(numberToCheck[i]);
+                        currentMaxIndex = i;
                     }
-                    break;
                 }
-
-                // This is looking if there at least 12 number to work with
-                // TODO: I need to combine it with the count of collectHighNumbers somehow
-                // Lets print out what the range is im using in the condition below
-                int rangeLeft = numberToCheck.GetRange(i, numberToCheck.Count - i).Count;
-                // Console.WriteLine("range left :" + rangeLeft);
-                int amountOfNumbersNeeded = rangeLeft + collectHighNumbers.Count;
-                // Console.WriteLine("range left minus CollectedNumbers :" + amountOfNumbersNeeded);
-                if (amountOfNumbersNeeded <= 12)
-                // if ( numberToCheck.GetRange(i, numberToCheck.Count - i).Count < 12)
-                {
-                    if (isHighNumbersComplete())
-                    {
-                        break;
-                    }
-                    // Console.WriteLine("Addition2 : " + numberToCheck[i]);
-                    collectHighNumbers.Add(numberToCheck[i]);
-                    i++;
-                    continue;
-                }
-
-                bool isBiggerThenNext = numberToCheck[i] > numberToCheck[i + 1];
-                if (isBiggerThenNext)
-                {
-                    if (isHighNumbersComplete())
-                    {
-                        break;
-                    }
-                    // Console.WriteLine("Addition3 :" + numberToCheck[i]);
-                    collectHighNumbers.Add(numberToCheck[i]);
-                }
-
-                i++;
+                hightValues.Add(allValues[currentMaxIndex]);
+                currentMaxIndex = currentMaxIndex + 1;
             }
-            string joined = string.Join("", collectHighNumbers);
-            Console.WriteLine(joined);
-            normalizedStr = joined;
+            normalizedStr = string.Join("", hightValues);
         }
 
         return normalizedStr;
