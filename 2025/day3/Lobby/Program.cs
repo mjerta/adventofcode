@@ -85,57 +85,6 @@ class BatteryScanner
         }
         else
         {
-            // int i = 0;
-            // // method that get me splice and start with  the highest number and at least have 12 number left
-            // List<int> numberToCheck = GetSpliceFromMax(allValues, 12);
-            // while (true)
-            // {
-            //     if (i >= numberToCheck.Count - 1)
-            //     {
-            //         if (!isHighNumbersComplete())
-            //         {
-            //             // Console.WriteLine("Addition1 :" + numberToCheck[i]);
-            //             collectHighNumbers.Add(numberToCheck[i]);
-            //         }
-            //         break;
-            //     }
-            //
-            //     // This is looking if there at least 12 number to work with
-            //     // TODO: I need to combine it with the count of collectHighNumbers somehow
-            //     // Lets print out what the range is im using in the condition below
-            //     int rangeLeft = numberToCheck.GetRange(i, numberToCheck.Count - i).Count;
-            //     // Console.WriteLine("range left :" + rangeLeft);
-            //     int amountOfNumbersNeeded = rangeLeft + collectHighNumbers.Count;
-            //     // Console.WriteLine("range left minus CollectedNumbers :" + amountOfNumbersNeeded);
-            //     if (amountOfNumbersNeeded <= 12)
-            //     // if ( numberToCheck.GetRange(i, numberToCheck.Count - i).Count < 12)
-            //     {
-            //         if (isHighNumbersComplete())
-            //         {
-            //             break;
-            //         }
-            //         // Console.WriteLine("Addition2 : " + numberToCheck[i]);
-            //         collectHighNumbers.Add(numberToCheck[i]);
-            //         i++;
-            //         continue;
-            //     }
-            //
-            //     bool isBiggerThenNext = numberToCheck[i] > numberToCheck[i + 1];
-            //     if (isBiggerThenNext)
-            //     {
-            //         if (isHighNumbersComplete())
-            //         {
-            //             break;
-            //         }
-            //         // Console.WriteLine("Addition3 :" + numberToCheck[i]);
-            //         collectHighNumbers.Add(numberToCheck[i]);
-            //     }
-            //
-            //     i++;
-            // }
-            // string joined = string.Join("", collectHighNumbers);
-            // Console.WriteLine(joined);
-            // normalizedStr = joined;
             List<int> hightValues = new List<int>();
             int currentMaxIndex = 0;
             for (int needed = 11; needed >= 0; needed--)
@@ -154,30 +103,6 @@ class BatteryScanner
         }
 
         return normalizedStr;
-    }
-
-    private List<int> GetSpliceFromMax(List<int> sequence, int minLength)
-    {
-        List<int> spliceFound = new List<int>();
-        List<int> hightToLow = new List<int>();
-        hightToLow = sequence.OrderByDescending(n => n).ToList();
-
-        int i = 0;
-        while (true)
-        {
-            int maxNumber = hightToLow[i];
-            int indexOfMax = sequence.IndexOf(maxNumber);
-
-            spliceFound = sequence.GetRange(indexOfMax, sequence.Count - indexOfMax).ToList();
-            int remaning = spliceFound.Count;
-            // Console.WriteLine((remaning));
-            if (remaning >= 12)
-            {
-                break;
-            }
-            i++;
-        }
-        return spliceFound;
     }
 
     private string NormalizeStrinBacktoSingleSequenceNumber(string input)
