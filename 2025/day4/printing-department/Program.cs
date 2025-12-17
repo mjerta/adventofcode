@@ -87,3 +87,9 @@ class ForkLiftHandler
     //     return 0;
     // }
 }
+
+class Logger
+{
+    int accessPositions;
+    // method to RegisterPaperPositions
+}
