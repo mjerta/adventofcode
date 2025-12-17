@@ -1,0 +1,41 @@
+﻿class Program
+{
+    static void Main()
+    {
+        string filePath = "./example-puzzle-input.txt";
+        // string filePath = "./puzzle-input.txt";
+        string[] lines = Array.Empty<string>();
+
+        if (File.Exists(filePath))
+        {
+            lines = File.ReadAllLines(filePath);
+        }
+        else
+        {
+            Console.WriteLine("File not found");
+        }
+
+        ForkLiftHandler forkLiftHandler = new ForkLiftHandler(lines);
+        forkLiftHandler.checkPaperPositions();
+    }
+}
+
+class ForkLiftHandler
+{
+    string[] lines;
+    int amountOfLines;
+
+    public ForkLiftHandler(string[] lines)
+    {
+        this.amountOfLines = lines.Count();
+        this.lines = lines;
+    }
+
+    public void checkPaperPositions()
+    {
+        for (int i = 0; i < this.amountOfLines; i++)
+        {
+            for (int j = 0; j < this.lines[i].Count(); i++) { }
+        }
+    }
+}

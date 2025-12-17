@@ -1,0 +1,15 @@
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/bin/Debug/net10.0/printing-department
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/bin/Debug/net10.0/printing-department.deps.json
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/bin/Debug/net10.0/printing-department.runtimeconfig.json
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/bin/Debug/net10.0/printing-department.dll
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/bin/Debug/net10.0/printing-department.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.GeneratedMSBuildEditorConfig.editorconfig
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.AssemblyInfoInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.AssemblyInfo.cs
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.csproj.CoreCompileInputs.cache
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.sourcelink.json
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.dll
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/refint/printing-department.dll
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.pdb
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/printing-department.genruntimeconfig.cache
+/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/Debug/net10.0/ref/printing-department.dll
