@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/printing-department.csproj": {}
+    "D:\\develop\\projects\\adventofcode\\2025\\day4\\printing-department\\printing-department.csproj": {}
   },
   "projects": {
-    "/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/printing-department.csproj": {
+    "D:\\develop\\projects\\adventofcode\\2025\\day4\\printing-department\\printing-department.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/printing-department.csproj",
+        "projectUniqueName": "D:\\develop\\projects\\adventofcode\\2025\\day4\\printing-department\\printing-department.csproj",
         "projectName": "printing-department",
-        "projectPath": "/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/printing-department.csproj",
-        "packagesPath": "/home/mjerta/.nuget/packages/",
-        "outputPath": "/home/mjerta/develop/projects/adventofcode/2025/day4/printing-department/obj/",
+        "projectPath": "D:\\develop\\projects\\adventofcode\\2025\\day4\\printing-department\\printing-department.csproj",
+        "packagesPath": "C:\\Users\\mpostma\\.nuget\\packages\\",
+        "outputPath": "D:\\develop\\projects\\adventofcode\\2025\\day4\\printing-department\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mjerta/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mpostma\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -54,18 +54,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[10.0.0, 10.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

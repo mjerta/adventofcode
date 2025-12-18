@@ -17,6 +17,8 @@
 
         ForkLiftHandler forkLiftHandler = new ForkLiftHandler(lines);
         forkLiftHandler.RegisterPaperPositions();
+        int amountFOund = forkLiftHandler.getLogger().getAccesPositions();
+        Console.WriteLine(amountFOund);
     }
 }
 
@@ -25,11 +27,14 @@ class ForkLiftHandler
     string[] lines;
     int amountOfLines;
     Dictionary<int, int> gridPositions = new Dictionary<int, int>();
+    Logger logger = new Logger();
+    Movement movement;
 
     public ForkLiftHandler(string[] lines)
     {
         this.amountOfLines = lines.Count();
         this.lines = lines;
+        this.movement = new Movement(lines);
     }
 
     public void RegisterPaperPositions()
@@ -40,56 +45,91 @@ class ForkLiftHandler
             {
                 if (this.lines[i][j].ToString().Equals("@"))
                 {
-                    // perhaps I could directly test differnt positions here
-                    bool toTheLeft = j > 0 && this.lines[i][j - 1].ToString().Equals("@");
-                    bool toTheTopLeft =
-                        i > 0 && j > 0 && this.lines[i - 1][j - 1].ToString().Equals("@");
-                    bool toTheTop = i > 0 && this.lines[i - 1][j].ToString().Equals("@");
-                    bool toTheTopRight =
-                        i < 0
-                        && j < this.lines[i].Count()
-                        && this.lines[i - 1][j + 1].ToString().Equals("@");
-                    bool toTheRight =
-                        j < this.lines[i].Count() && this.lines[i][j + 1].ToString().Equals("@");
-                    bool toTheBottomRight =
-                        i < this.lines.Count()
-                        && j < this.lines[i].Count()
-                        && this.lines[i + 1][j + 1].ToString().Equals("@");
-                    bool toTheBottom =
-                        i < this.lines.Count() && this.lines[i + 1][j].ToString().Equals("@");
-                    bool toTheBottomLeft =
-                        i < this.lines.Count()
-                        && j > 0
-                        && this.lines[i + 1][j - 1].ToString().Equals("@");
-                    // perhaps i Should refactor this above and put it in a list loop voer it.
-                    // With a while loop and sort ciruit when 4 are foud or not found
-                    // Most importantly is that the point is that the true position is when there a fewer than four rolls of paper in the eight adjacent positions
+                    this.movement.registerDirection(i, j);
                 }
             }
         }
+        int k = 0;
+        while (this.logger.getAccesPositions() < 3)
+        {
+            if (this.movement.getListOfDirections()[k])
+            {
+                this.logger.registerGrabbalbePaper(j, i);
+            }
+            k++;
+        }
     }
 
-    // public int TakePosition()
-    // {
-    //     foreach (KeyValuePair<int, int> position in gridPositions)
-    //     {
-    //       // while loop
-    //       // break out when 4 position found
-    //       // position horizontal
-    //       // postion diagonal
-    //       // positon vertical
-    //       int foundEntries = 0;
-    //       while(foundEntries < 4)
-    //       {
-    //
-    //       }
-    //     }
-    //     return 0;
-    // }
+    public Logger getLogger()
+    {
+        return this.logger;
+    }
 }
 
 class Logger
 {
-    int accessPositions;
-    // method to RegisterPaperPositions
+    private int accessPositions = 0;
+    private Dictionary<int, List<int>> actualPosition = new Dictionary<int, List<int>>();
+
+    public void registerGrabbalbePaper(int x, int y)
+    {
+        accessPositions++;
+        if (!actualPosition.ContainsKey(y))
+        {
+            actualPosition[y] = new List<int>();
+        }
+        actualPosition[y].Add(x);
+    }
+
+    public int getAccesPositions()
+    {
+        return this.accessPositions;
+    }
+
+    public Dictionary<int, List<int>> getActualPostions()
+    {
+        return this.actualPosition;
+    }
+}
+
+class Movement
+{
+    private List<bool> listOfDirection = new List<bool>();
+    private string[] lines;
+
+    public Movement(string[] lines)
+    {
+        this.lines = lines;
+    }
+
+    public void registerDirection(int i, int j)
+    {
+        this.listOfDirection.Add(j > 0 && this.lines[i][j - 1].ToString().Equals("@"));
+        this.listOfDirection.Add(i > 0 && j > 0 && this.lines[i - 1][j - 1].ToString().Equals("@"));
+        this.listOfDirection.Add(i > 0 && this.lines[i - 1][j].ToString().Equals("@"));
+        this.listOfDirection.Add(
+            i > 0
+                && j < this.lines[i].Count() - 1
+                && this.lines[i - 1][j + 1].ToString().Equals("@")
+        );
+        this.listOfDirection.Add(
+            j < this.lines[i].Count() - 1 && this.lines[i][j + 1].ToString().Equals("@")
+        );
+        this.listOfDirection.Add(
+            i < this.lines.Count() - 1
+                && j < this.lines[i].Count() - 1
+                && this.lines[i + 1][j + 1].ToString().Equals("@")
+        );
+        this.listOfDirection.Add(
+            i < this.lines.Count() - 1 && this.lines[i + 1][j].ToString().Equals("@")
+        );
+        this.listOfDirection.Add(
+            i < this.lines.Count() - 1 && j > 0 && this.lines[i + 1][j - 1].ToString().Equals("@")
+        );
+    }
+
+    public List<bool> getListOfDirections()
+    {
+        return this.listOfDirection;
+    }
 }
