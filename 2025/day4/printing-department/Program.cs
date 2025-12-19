@@ -50,6 +50,7 @@ class ForkLiftHandler
             }
         }
         int k = 0;
+
         while (this.logger.getAccesPositions() < 3)
         {
             if (this.movement.getListOfDirections()[k])
